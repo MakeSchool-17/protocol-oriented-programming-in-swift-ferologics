@@ -71,6 +71,7 @@ extension VehicleType
 }
 
 // define every type of vehicle for assignment
+
 struct Car: GroundVehicleType, VehicleType
 {
     var speed: KilometersPerHour = 70
@@ -104,3 +105,6 @@ struct ContainerShip: VehicleType, VesselType
     var speed: KilometersPerHour  = 25
     var length = 55
 }
+
+var containerShip = ContainerShip()
+"\(containerShip.travelDuration()) hours"
