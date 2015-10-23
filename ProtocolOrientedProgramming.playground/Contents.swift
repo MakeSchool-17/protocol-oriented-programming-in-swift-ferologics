@@ -35,7 +35,7 @@ typealias Hours = Double
 protocol VehicleType
 {
     var speed: KilometersPerHour { get }
-    func travelDuration(distance: Kilometers?) -> Double
+    func travelDuration(distance: Kilometers?) -> KilometersPerHour
 }
 protocol GroundVehicleType { var wheels: Int { get } }
 protocol BusType           { var seats:  Int { get } }
@@ -52,7 +52,7 @@ enum Vehicles
 
 extension VehicleType
 {
-    func travelDuration(distance: Kilometers = 100) -> Double
+    func travelDuration(distance: Kilometers = 100) -> KilometersPerHour
     {
         return ( distance / speed )
     }
@@ -60,32 +60,35 @@ extension VehicleType
 
 struct Car: GroundVehicleType, VehicleType
 {
-    var windows = 4
-    var wheels  = 4
-    var speed   = 70
+    var speed: KilometersPerHour = 70
+    var windows: Int = 4
+    var wheels: Int  = 4
 }
 
 struct MotorCycle: GroundVehicleType, VehicleType
 {
+    var speed: KilometersPerHour  = 90
     var wheels = 2
-    var speed  = 90
 }
 
 struct Bus: GroundVehicleType, BusType, VehicleType
 {
+    var speed: KilometersPerHour = 55
+    var windows = 20
     var wheels  = 4
     var seats   = 80
-    var windows = 20
+
 }
 
 struct Boat: VehicleType, VesselType
 {
-    var windows = 0
-    var speed   = 45
+    var speed: KilometersPerHour = 30
+    var windows = 90
+    var length = 40
 }
 
 struct ContainerShip: VehicleType, VesselType
 {
-    var length = 5
-    var speed  = 45
+    var speed: KilometersPerHour  = 25
+    var length = 55
 }
