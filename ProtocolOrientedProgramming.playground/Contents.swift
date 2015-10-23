@@ -67,7 +67,7 @@ enum Vehicles
 // extend the protocol to provide implementation of the travel duration
 extension VehicleType
 {
-    func travelDuration(distance: Kilometers = 100) -> KilometersPerHour { return ( distance / speed ) }
+    func travelDuration(distance: Kilometers = 100) -> Hours { return ( distance / speed ) }
 }
 
 // define every type of vehicle for assignment
