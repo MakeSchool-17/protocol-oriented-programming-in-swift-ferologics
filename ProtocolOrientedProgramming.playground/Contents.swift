@@ -35,12 +35,13 @@ typealias Hours = Double
 protocol VehicleType
 {
     var speed: KilometersPerHour { get }
-    func travelDuration(distance: Kilometers?) -> KilometersPerHour
+    func travelDuration(distance: Kilometers) -> KilometersPerHour
 }
 protocol GroundVehicleType { var wheels: Int { get } }
 protocol BusType           { var seats:  Int { get } }
 protocol VesselType        { var length: Int { get } }
 
+// aternative way to do this with enums
 enum Vehicles
 {
     case Car          (wheels:  Int, windows: Int)
@@ -48,16 +49,28 @@ enum Vehicles
     case Bus          (wheels:  Int, windows: Int, seats: Int)
     case Vessel       (length:  Int, windows: Int)
     case ContainerShip(length:  Int)
+    
+    /*  also you can use the switch statement somehow
+    
+    switch self
+    {
+        case .Car:
+            do something
+        ...
+        ..
+        .
+    }
+    
+    */
 }
 
+// extend the protocol to provide implementation of the travel duration
 extension VehicleType
 {
-    func travelDuration(distance: Kilometers = 100) -> KilometersPerHour
-    {
-        return ( distance / speed )
-    }
+    func travelDuration(distance: Kilometers = 100) -> KilometersPerHour { return ( distance / speed ) }
 }
 
+// define every type of vehicle for assignment
 struct Car: GroundVehicleType, VehicleType
 {
     var speed: KilometersPerHour = 70
@@ -77,7 +90,6 @@ struct Bus: GroundVehicleType, BusType, VehicleType
     var windows = 20
     var wheels  = 4
     var seats   = 80
-
 }
 
 struct Boat: VehicleType, VesselType
